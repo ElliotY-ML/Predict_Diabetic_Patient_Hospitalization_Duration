@@ -1,20 +1,32 @@
-# Diabetes Drug Testing
-**Context**: You are a data scientist for an exciting unicorn healthcare startup that has created a groundbreaking diabetes drug that is ready for Phase III clinical trial testing. It is a very unique and sensitive drug that requires administering and screening the drug over at least 5-7 days of time in the hospital with frequent monitoring/testing and patient medication adherence training with a mobile application. You have been provided a patient dataset from a client partner and are tasked with building a predictive model that can identify which type of patients the company should focus their efforts testing this drug on. Target patients are people that are likely to be in the hospital for this duration of time and will not incur significant additional costs for administering this drug to the patient and monitoring.  
+# Patient Selection for Diabetes Drug Testing
+This repository contains a completed cap-stone project for Udacity's "Applying AI to EHR Data" course, 
+part of the AI for Healthcare Nanodegree program.  It has been reviewed by Udacity instructors and met project specifications.
 
-In order to achieve your goal you must build a regression model that can predict the estimated hospitalization time for a patient and use this to select/filter patients for your study.
+**Context**: A hypothetical healthcare company is preparing for Phase III clinical trial testing for its novel diabetes drug.  The drug requires administering and patient monitoring over a duration of 5-7 days in the hospital.
+Target patients are those who are likely to be in the hospital for this duration of time, so there will be no significant additional costs for drug administration and patient monitoring. 
+The goal of this project is utilize Electronic Health Record (EHR) information to build a regression model that can predict the hospitalization time for a patient, and then use this model to select/filter patients for this study.
 
-**Expected Hospitalization Time Regression Model:** Utilizing a synthetic dataset(denormalized at the line level augmentation) built off of the UCI Diabetes readmission dataset, students will build a regression model that predicts the expected days of hospitalization time and then convert this to a binary prediction of whether to include or exclude that patient from the clinical trial.
+**Expected Hospitalization Time Regression Model:** 
+A regression model was built to predict the expected days of hospitalization time, and then convert this to a binary prediction of whether to include or exclude that patient from the clinical trial.
 
-This project will demonstrate the importance of building the right data representation at the encounter level, with appropriate filtering and preprocessing/feature engineering of key medical code sets. This project will also require students to analyze and interpret their model for biases across key demographic groups. 
+This project demonstrates the importance of transforming EHR data into an appropriate data representation at the encounter level (per patient visit level), then apply filtering, preprocessing, and feature engineering of key medical code sets.  
+A Deep Learning regression model was built with Tensorflow's Feature Column API and Tensorflow Probability Layers.  
+
+The completed regression model achieved binary predication accuracy of 0.77, precision of 0.71, recall of 0.61, and F1-score of 0.66.  
+It can be further optimized by maximizing precision, recall, or F1-score with trade-off between precision and recall.  
+For full discussion, please read the "Model Evaluation Metrics" section of `src\student_project_EY_completed.ipynb`.  
+
+Model biases across key demographic groups were analyzed with UChicago's Aequitas toolkit. 
 
 ### Dataset
-Due to healthcare PHI regulations (HIPAA, HITECH), there are limited number of publicly available datasets and some datasets require training and approval. So, for the purpose of this exercise, we are using a dataset from UC Irvine that has been modified for this course. Please note that it is limited in its representation of some key features such as diagnosis codes which are usually an unordered list in 835s/837s (the HL7 standard interchange formats used for claims and remits).
-
-- https://archive.ics.uci.edu/ml/datasets/Diabetes+130-US+hospitals+for+years+1999-2008
+Udacity provided a synthetic dataset(denormalized at the line level augmentation) built off of the UC Irvine Diabetes re-admission dataset. 
+- [Original UCI Dataset (https://archive.ics.uci.edu/ml/datasets/Diabetes+130-US+hospitals+for+years+1999-2008)](https://archive.ics.uci.edu/ml/datasets/Diabetes+130-US+hospitals+for+years+1999-2008)
 
 ## Getting Started
 
-Follow the instructions in `starter_code/student_project.ipynb` and be sure to set up your Anaconda environment to get started!
+1. Set up your Anaconda environment.  
+2. Clone `https://github.com/ElliotY-ML/Predict_Diabetic_Patient_Hospital_Stay` GitHub repo to your local machine.
+3. Open `src/student_project_EY_completed.ipynb` with Jupyer Notebook to explore EDA, feature transformations, model training, inference, and bias analysis.
 
 
 ### Dependencies
@@ -58,14 +70,12 @@ These instructions also assume you have `git` installed for working with Github 
 conda install git
 ```
 
-If you'd like to learn more about version control and using `git` from the command line, take a look at our [free course: Version Control with Git](https://www.udacity.com/course/version-control-with-git--ud123).
-
-**Now, we're ready to create our local environment!**
+**Create local environment**
 
 1. Clone the repository, and navigate to the downloaded folder. This may take a minute or two to clone due to the included image data.
 ```
-git clone https://github.com/udacity/nd320-c1-emr-data-starter.git
-cd nd320-c1-emr-data-starter
+git clone https://github.com/ElliotY-ML/Predict_Diabetic_Patient_Hospital_Stay
+cd Predict_Diabetic_Patient_Hospital_Stay
 ```
 
 2. Create (and activate) a new environment, named `udacity-ehr-env` with Python 3.7. If prompted to proceed with the install `(Proceed [y]/n)` type y.
@@ -92,7 +102,22 @@ pip install -r requirements.txt
 ```
 
 
+## Project Instructions
+
+Follow the instructions in `src/student_project_EY_completed.ipynb`.
+
+**Project Overview**
+1. Project Instructions & Prerequisites
+2. Learning Objectives
+3. Data Preparation
+4. Create Categorical Features with TF Feature Columns
+5. Create Continuous/Numerical Features with TF Feature Columns
+6. Build Deep Learning Regression Model with Sequential API and TF Probability Layers
+7. Evaluating Potential Model Biases with Aequitas Toolkit
+
+For more information on this project's instructions prompt, please read Udacity's original project instructions in the Project_Instructions markdown file.
+
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md]()
+This project is licensed under the MIT License - see the [LICENSE.md](./LICENSE.md)
