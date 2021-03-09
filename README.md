@@ -2,31 +2,34 @@
 This repository contains a completed cap-stone project for Udacity's "Applying AI to EHR Data" course, 
 part of the AI for Healthcare Nanodegree program.  It has been reviewed by Udacity instructors and met project specifications.
 
-**Context**: A hypothetical healthcare company is preparing for Phase III clinical trial testing for its novel diabetes drug.  The drug requires administering and patient monitoring over a duration of 5-7 days in the hospital.
+**Project Premise**  
+A hypothetical healthcare company is preparing for Phase III clinical trial testing for its novel diabetes drug.  The drug requires administering and patient monitoring over a duration of 5-7 days in the hospital.
 Target patients are those who are likely to be in the hospital for this duration of time, so there will be no significant additional costs for drug administration and patient monitoring. 
 The goal of this project is utilize Electronic Health Record (EHR) information to build a regression model that can predict the hospitalization time for a patient, and then use this model to select/filter patients for this study.
 
-**Expected Hospitalization Time Regression Model:** 
-A regression model was built to predict the expected days of hospitalization time, and then convert this to a binary prediction of whether to include or exclude that patient from the clinical trial.
+**Regression Model for Expected Hospitalization Duration**   
+A deep learning regression model was built to predict the expected days of hospitalization duration, and then convert this to a binary prediction of whether to include or exclude that patient from the clinical trial.
 
-This project demonstrates the importance of transforming EHR data into an appropriate data representation at the encounter level (per patient visit level), then apply filtering, preprocessing, and feature engineering of key medical code sets.  
-A Deep Learning regression model was built with Tensorflow's Feature Column API and Tensorflow Probability Layers.  
+This project utilizes EHR data by transforming line-level data into an appropriate data representation at the encounter level (per patient visit level), and then apply filtering, preprocessing, and feature engineering of key medical code sets. 
+Tensorflow Feature Column API was used to prepare features and Tensorflow Probability Layers were used to create the regression model.  
 
-The completed regression model achieved binary predication accuracy of 0.77, precision of 0.71, recall of 0.61, and F1-score of 0.66.  
-It can be further optimized by maximizing precision, recall, or F1-score with trade-off between precision and recall.  
+The completed regression model achieved binary predication accuracy of 0.77, precision of 0.71, recall of 0.61, and F1-score of 0.66. It can be further optimized by maximizing precision, recall, or F1-score with trade-off between precision and recall.  
 For full discussion, please read the "Model Evaluation Metrics" section of `src\student_project_EY_completed.ipynb`.  
 
-Model biases across key demographic groups were analyzed with UChicago's Aequitas toolkit. 
+To understand model biases across key demographic groups, model predictions were analyzed with UChicago's Aequitas toolkit. 
 
 ### Dataset
-Udacity provided a synthetic dataset(denormalized at the line level augmentation) built off of the UC Irvine Diabetes re-admission dataset. 
-- [Original UCI Dataset (https://archive.ics.uci.edu/ml/datasets/Diabetes+130-US+hospitals+for+years+1999-2008)](https://archive.ics.uci.edu/ml/datasets/Diabetes+130-US+hospitals+for+years+1999-2008)
+Udacity provided a synthetic dataset(denormalized at the line level augmentation) built off of the UC Irvine Diabetes re-admission dataset.  
+The dataset can be found in `/src/data/final_project_dataset.csv`.
+
+**References**  
+[Original UCI Dataset (https://archive.ics.uci.edu/ml/datasets/Diabetes+130-US+hospitals+for+years+1999-2008)](https://archive.ics.uci.edu/ml/datasets/Diabetes+130-US+hospitals+for+years+1999-2008)
 
 ## Getting Started
 
 1. Set up your Anaconda environment.  
-2. Clone `https://github.com/ElliotY-ML/Predict_Diabetic_Patient_Hospital_Stay` GitHub repo to your local machine.
-3. Open `src/student_project_EY_completed.ipynb` with Jupyer Notebook to explore EDA, feature transformations, model training, inference, and bias analysis.
+2. Clone `https://github.com/ElliotY-ML/Predict_Diabetic_Patient_Hospitalization_Duration.git` GitHub repo to your local machine.
+3. Open `src/student_project_EY_completed.ipynb` with Jupyer Notebook to explore EDA, feature transformations, feature columns, model training, inference, and bias analysis.
 
 
 ### Dependencies
@@ -74,8 +77,8 @@ conda install git
 
 1. Clone the repository, and navigate to the downloaded folder. This may take a minute or two to clone due to the included image data.
 ```
-git clone https://github.com/ElliotY-ML/Predict_Diabetic_Patient_Hospital_Stay
-cd Predict_Diabetic_Patient_Hospital_Stay
+git clone https://github.com/ElliotY-ML/Predict_Diabetic_Patient_Hospitalization_Duration.git
+cd Predict_Diabetic_Patient_Hospitalization_Duration
 ```
 
 2. Create (and activate) a new environment, named `udacity-ehr-env` with Python 3.7. If prompted to proceed with the install `(Proceed [y]/n)` type y.
@@ -102,20 +105,45 @@ pip install -r requirements.txt
 ```
 
 
-## Project Instructions
+## Repository Instructions  
 
-Follow the instructions in `src/student_project_EY_completed.ipynb`.
+Udacity's original project instructions can be read in the `Project_Instructions.md` file.
 
 **Project Overview**
+
 1. Project Instructions & Prerequisites
 2. Learning Objectives
-3. Data Preparation
-4. Create Categorical Features with TF Feature Columns
-5. Create Continuous/Numerical Features with TF Feature Columns
-6. Build Deep Learning Regression Model with Sequential API and TF Probability Layers
+3. Data Preparation and Exploratory Data Analysis
+4. Create Categorical Features with TensorFlow Feature Columns
+5. Create Continuous/Numerical Features with TensorFlow Feature Columns
+6. Build Deep Learning Regression Model with Sequential API and TensorFlow Probability Layers
 7. Evaluating Potential Model Biases with Aequitas Toolkit
 
-For more information on this project's instructions prompt, please read Udacity's original project instructions in the Project_Instructions markdown file.
+
+Begin by opening `/src/student_project_EY_completed.ipynb` with Jupyter Notebook.  
+
+Inputs:  
+-  Udacity Dataset: `src/data/final_project_dataset.csv`  
+-  Admission Type ID: `src/data_schema_references/IDs_mapping.csv`
+-  NDC Codes to Drugs Lookup Table: `src/data_schema_references/ndc_lookup_table.csv`
+-  Dataset Schema: `src/data_schema_references/project_data_schema.csv`
+-  NDC Codes to Drugs Lookup Tabble (copy): `src/medication_lookup_tables/final_ndc_lookup_table`
+
+Output:  
+-  Trained Deep learning regression model with TensorFlow Probability Layers in notebook
+-  Predictions output in `/out/pred_test_df3.csv`
+
+1.  Data preparation begins in section 3.  The project dataset is loaded into a pandas DataFrame.  There are medical code reference tables in `src/data_schema_references` that translate medical and medicine codes into descriptions.  These are also loaded into dataframes.
+2.  An exploratory data analysis proceeds to understand the data and demographics.  
+3.  The dataset is then reduced from the line level into an aggregated encounter level.  In other words, all indiviual medical codes are aggregated by individual patient visits.
+4.  Select categorical and numerical features to use for the model.
+5.  Split dataset into a 60%/20%/20% train/validation/test split and ensure that the demographics are reflective of the overall dataset.  The `patient_dataset_splitter` function was completed in `student_utils.py` module.
+6.  Use TensorFlow Feature Columns API to create categorical features and embedding columns for each feature.  The `create_tf_categorical_feature_cols` function was completed in `student_utils.py` module.
+7.  Use TensorFlow Feature Columns API to create numeric features.  The `create_tf_numeric_feature` function was completed in `student_utils.py` module.
+8.  Build and train a deep learning regression model with Keras DenseFeatures and TensorFlow Probability Layers.
+9.  Convert regression output to classification for patient selection
+9.  Use scikit-learn `classification_report` and `confusion_matrix` functions to compare patient selection performance of trained model against actual hospitalization durations.  
+10. Evaluate potential model biases with Aequitas toolkit.  Visualizations show if there are model biases for gender and race demographics.  
 
 
 ## License
