@@ -57,11 +57,11 @@ Using Anaconda consists of the following:
 [lin64]: https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
 [lin32]: https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86.sh
 
-**Install** [miniconda](http://conda.pydata.org/miniconda.html) on your machine. Detailed instructions:
+**Install** [miniconda](https://docs.conda.io/en/latest/miniconda.html) on your machine. Detailed instructions:
 
-- **Linux:** http://conda.pydata.org/docs/install/quick.html#linux-miniconda-install
-- **Mac:** http://conda.pydata.org/docs/install/quick.html#os-x-miniconda-install
-- **Windows:** http://conda.pydata.org/docs/install/quick.html#windows-miniconda-install
+- **Linux:** https://docs.conda.io/en/latest/miniconda.html#linux-installers
+- **Mac:** https://docs.conda.io/en/latest/miniconda.html#macosx-installers
+- **Windows:** https://docs.conda.io/en/latest/miniconda.html#windows-installers
 
 ## 2. Create and Activate the Environment
 
@@ -81,16 +81,16 @@ git clone https://github.com/ElliotY-ML/Predict_Diabetic_Patient_Hospitalization
 cd Predict_Diabetic_Patient_Hospitalization_Duration
 ```
 
-2. Create (and activate) a new environment, named `udacity-ehr-env` with Python 3.7. If prompted to proceed with the install `(Proceed [y]/n)` type y.
+2. Create (and activate) a new environment, named `udacity-ehr-env` with Python 3.8. If prompted to proceed with the install `(Proceed [y]/n)` type y.
 
 	- __Linux__ or __Mac__: 
 	```
-	conda create -n udacity-ehr-env python=3.7
+	conda create -n udacity-ehr-env 
 	source activate udacity-ehr-env
 	```
 	- __Windows__: 
 	```
-	conda create --name udacity-ehr-env python=3.7
+	conda create --name udacity-ehr-env 
 	activate udacity-ehr-env
 	```
 	

@@ -1,6 +1,10 @@
-tensorflow
-tensorflow_probability
-matplotlib
-aequitas
+git+https://github.com/dssg/aequitas.git
 ipykernel
 jupyterlab
+matplotlib
+numpy
+pandas
+sklearn
+tensorflow
+tensorflow_data_validation
+tensorflow_probability
