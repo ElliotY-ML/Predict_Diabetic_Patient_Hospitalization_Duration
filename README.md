@@ -5,18 +5,18 @@ part of the AI for Healthcare Nanodegree program.  It has been reviewed by Udaci
 **Project Premise**  
 A hypothetical healthcare company is preparing for Phase III clinical trial testing for its novel diabetes drug.  The drug requires administering and patient monitoring over a duration of 5-7 days in the hospital.
 Target patients are those who are likely to be in the hospital for this duration of time, so there will be no significant additional costs for drug administration and patient monitoring. 
-The goal of this project is utilize Electronic Health Record (EHR) information to build a regression model that can predict the hospitalization time for a patient, and then use this model to select/filter patients for this study.
+The goal of this project is to utilize Electronic Health Record (EHR) information to build a regression model that can predict the hospitalization time for a patient, and then use this model to select/filter patients for this study.
 
 **Regression Model for Expected Hospitalization Duration**   
 A deep learning regression model was built to predict the expected days of hospitalization duration, and then convert this to a binary prediction of whether to include or exclude that patient from the clinical trial.
 
 This project utilizes EHR data by transforming line-level data into an appropriate data representation at the encounter level (per patient visit level), and then apply filtering, preprocessing, and feature engineering of key medical code sets. 
-Tensorflow Feature Column API was used to prepare features and Tensorflow Probability Layers were used to create the regression model.  
+TensorFlow Feature Column API was used to prepare features and TensorFlow Probability Layers were used to create the regression model.  
 
 The completed regression model achieved binary predication accuracy of 0.77, precision of 0.71, recall of 0.61, and F1-score of 0.66. It can be further optimized by maximizing precision, recall, or F1-score with trade-off between precision and recall.  
 For full discussion, please read the "Model Evaluation Metrics" section of `src\student_project_EY_completed.ipynb`.  
 
-To understand model biases across key demographic groups, model predictions were analyzed with UChicago's Aequitas toolkit. 
+To understand model biases across key demographic groups, model predictions were analyzed with the UChicago Aequitas toolkit. 
 
 ### Dataset
 Udacity provided a synthetic dataset(denormalized at the line level augmentation) built off of the UC Irvine Diabetes re-admission dataset.  
@@ -29,7 +29,7 @@ The dataset can be found in `/src/data/final_project_dataset.csv`.
 
 1. Set up your Anaconda environment.  
 2. Clone `https://github.com/ElliotY-ML/Predict_Diabetic_Patient_Hospitalization_Duration.git` GitHub repo to your local machine.
-3. Open `src/student_project_EY_completed.ipynb` with Jupyer Notebook to explore EDA, feature transformations, feature columns, model training, inference, and bias analysis.
+3. Open `src/student_project_EY_completed.ipynb` with Jupyter Notebook to explore EDA, feature transformations, feature columns, model training, inference, and bias analysis.
 
 
 ### Dependencies
@@ -127,7 +127,7 @@ Inputs:
 -  Admission Type ID: `src/data_schema_references/IDs_mapping.csv`
 -  NDC Codes to Drugs Lookup Table: `src/data_schema_references/ndc_lookup_table.csv`
 -  Dataset Schema: `src/data_schema_references/project_data_schema.csv`
--  NDC Codes to Drugs Lookup Tabble (copy): `src/medication_lookup_tables/final_ndc_lookup_table`
+-  NDC Codes to Drugs Lookup Table (copy): `src/medication_lookup_tables/final_ndc_lookup_table`
 
 Output:  
 -  Trained Deep learning regression model with TensorFlow Probability Layers in notebook
@@ -135,7 +135,7 @@ Output:
 
 1.  Data preparation begins in section 3.  The project dataset is loaded into a pandas DataFrame.  There are medical code reference tables in `src/data_schema_references` that translate medical and medicine codes into descriptions.  These are also loaded into dataframes.
 2.  An exploratory data analysis proceeds to understand the data and demographics.  
-3.  The dataset is then reduced from the line level into an aggregated encounter level.  In other words, all indiviual medical codes are aggregated by individual patient visits.
+3.  The dataset is then reduced from the line level into an aggregated encounter level.  In other words, all individual medical codes are aggregated by individual patient visits.
 4.  Select categorical and numerical features to use for the model.
 5.  Split dataset into a 60%/20%/20% train/validation/test split and ensure that the demographics are reflective of the overall dataset.  The `patient_dataset_splitter` function was completed in `student_utils.py` module.
 6.  Use TensorFlow Feature Columns API to create categorical features and embedding columns for each feature.  The `create_tf_categorical_feature_cols` function was completed in `student_utils.py` module.
