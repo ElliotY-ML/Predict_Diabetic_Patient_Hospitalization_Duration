@@ -1,5 +1,5 @@
 # Patient Selection for Diabetes Drug Testing
-This repository contains a completed cap-stone project for Udacity's "Applying AI to EHR Data" course, 
+This repository contains a completed cap-stone project for the Udacity "Applying AI to EHR Data" course, 
 part of the AI for Healthcare Nanodegree program.  It has been reviewed by Udacity instructors and met project specifications.
 
 **Project Premise**  
@@ -107,7 +107,7 @@ pip install -r requirements.txt
 
 ## Repository Instructions  
 
-Udacity's original project instructions can be read in the `Project_Instructions.md` file.
+The original Udacity project instructions can be read in [`Udacity_Project_Instructions.md`](Udacity_Project_Instructions.md).
 
 **Project Overview**
 
